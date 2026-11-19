@@ -23,6 +23,9 @@ Homepage = "https://davidpowermsit.github.io/snowman-meltdown/"
 Repository = "https://github.com/davidpowermsit/snowman-meltdown"
 Documentation = "https://davidpowermsit.github.io/snowman-meltdown/"
 
+[project.scripts]
+snowman = "snowman_meltdown.snowman:main"
+
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
