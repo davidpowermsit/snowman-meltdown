@@ -1,6 +1,18 @@
 import random
 
 
+def prompt_letter(guessed_letters: set[str]) -> str:
+    """Ask until the user enters a new single letter."""
+    while True:
+        value = input("Guess a letter: ").strip().lower()
+        if len(value) != 1 or not value.isalpha():
+            print("Enter a single letter.")
+        elif value in guessed_letters:
+            print("You already guessed that. Try another letter.")
+        else:
+            return value
+
+
 def get_random_word(secret_words: list[str]) -> str:
     """Selects a random word from the list."""
     return secret_words[random.randint(0, len(secret_words) - 1)]
@@ -21,7 +33,7 @@ def play_game(game_stages: list[str], secret_words: list[str]) -> None:
     while not (won or lost):
         display_game_state(game_stages, mistaken_letters)
 
-        guess = input("Guess a letter: ").lower()
+        guess = prompt_letter(guessed_letters)
         guessed_letters.add(guess)
 
         mistaken_letters = guessed_letters - set(secret_word)
