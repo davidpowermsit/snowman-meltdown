@@ -1,15 +1,9 @@
 # snowman-meltdown
 
-[![Release](https://img.shields.io/github/v/release/davidpowermsit/snowman-meltdown)](https://img.shields.io/github/v/release/davidpowermsit/snowman-meltdown)
-[![Build status](https://img.shields.io/github/actions/workflow/status/davidpowermsit/snowman-meltdown/main.yml?branch=main)](https://github.com/davidpowermsit/snowman-meltdown/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/davidpowermsit/snowman-meltdown/branch/main/graph/badge.svg)](https://codecov.io/gh/davidpowermsit/snowman-meltdown)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/davidpowermsit/snowman-meltdown)](https://img.shields.io/github/commit-activity/m/davidpowermsit/snowman-meltdown)
 [![License](https://img.shields.io/github/license/davidpowermsit/snowman-meltdown)](https://img.shields.io/github/license/davidpowermsit/snowman-meltdown)
 
 Command-line Snowman game, a hangman variant where each wrong guess melts part of the snowman. Written in Python.
-
-- **Github repository**: <https://github.com/davidpowermsit/snowman-meltdown/>
-- **Documentation** <https://davidpowermsit.github.io/snowman-meltdown/>
 
 ## Getting started with your project
 
