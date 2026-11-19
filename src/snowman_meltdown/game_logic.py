@@ -16,15 +16,16 @@ def play_game(game_stages: list[str], secret_words: list[str]) -> None:
     secret_word: str = get_random_word(secret_words)
     print("Welcome to Snowman Meltdown!")
     lost: bool = False
+    won: bool = False
 
-    while not lost:
-        guess = input("Guess a letter: ").lower()
-        guessed_letters.add(guess)
-        print(f"You guessed: {guess}")
-
-        mistaken_letters = guessed_letters - set(secret_word)
+    while not (won or lost):
         display_game_state(game_stages, mistaken_letters)
 
+        guess = input("Guess a letter: ").lower()
+        guessed_letters.add(guess)
+
+        mistaken_letters = guessed_letters - set(secret_word)
+        won = set(secret_word) <= guessed_letters
         lost = len(mistaken_letters) >= len(game_stages) - 1
 
-    print("You lost. Please try again.")
+    print("Congratulations! You saved the snowman." if won else f"The snowman died. The word was {secret_word!r}.")
