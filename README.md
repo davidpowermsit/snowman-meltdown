@@ -5,58 +5,48 @@
 
 Command-line Snowman game, a hangman variant where each wrong guess melts part of the snowman. Written in Python.
 
-## Getting started with your project
+## Getting started
 
-### 1. Create a New Repository
-
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+You need [Git](https://git-scm.com/), [uv](https://docs.astral.sh/uv/getting-started/installation/) and `make`. uv installs the right Python version for you.
 
 ```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:davidpowermsit/snowman-meltdown.git
-git push -u origin main
-```
-
-### 2. Set Up Your Development Environment
-
-Then, install the environment and the pre-commit hooks with
-
-```bash
+git clone git@github.com:davidpowermsit/snowman-meltdown.git
+cd snowman-meltdown
 make install
 ```
 
-This will also generate your `uv.lock` file
+`make install` creates the virtual environment, installs the dependencies and sets up the pre-commit hooks.
 
-### 3. Run the pre-commit hooks
-
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+## Play the game
 
 ```bash
-uv run pre-commit run -a
+uv run snowman
 ```
 
-### 4. Commit the changes
+Guess one letter at a time. Each wrong guess melts the snowman a little more, and you lose when it has completely melted.
 
-Lastly, commit the changes made by the two steps above to your repository.
+## Run the tests
 
 ```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
+make test
 ```
 
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
+This runs the whole suite with pytest. To run a single file or test, use pytest directly:
 
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs/Zensical, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/docs_tool/#deploying-to-github-pages).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
+```bash
+uv run pytest tests/test_game_logic.py
+uv run pytest -k test_player_wins
+```
 
-## Releasing a new version
+## Contributing
 
+1. Create a branch: `git checkout -b my-change`
+2. Make your change and add or update tests in `tests/`.
+3. Check that formatting, linting and type checks pass: `make check`
+4. Check that the tests pass: `make test`
+5. Commit, push your branch and open a pull request on GitHub.
 
+Found a bug or have an idea? [Open an issue](https://github.com/davidpowermsit/snowman-meltdown/issues). For bugs, include your operating system and the steps to reproduce it.
 
 ---
 
