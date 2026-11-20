@@ -1,6 +1,15 @@
 import random
 
 
+def prompt_play_again() -> bool:
+    """Ask until the user enters y or n."""
+    while True:
+        value = input("Would you like to play again? (y/n) ").strip().lower()
+        if value in {"y", "n"}:
+            return value == "y"
+        print("Please enter 'y' or 'n' only.")
+
+
 def prompt_letter(guessed_letters: set[str]) -> str:
     """Ask until the user enters a new single letter."""
     while True:
@@ -23,21 +32,25 @@ def display_game_state(display_stages: list[str], mistakes: set[str]) -> None:
 
 
 def play_game(game_stages: list[str], secret_words: list[str]) -> None:
-    guessed_letters: set[str] = set()
-    mistaken_letters: set[str] = set()
-    secret_word: str = get_random_word(secret_words)
-    print("Welcome to Snowman Meltdown!")
-    lost: bool = False
-    won: bool = False
+    retry: bool = True
+    while retry:
+        guessed_letters: set[str] = set()
+        mistaken_letters: set[str] = set()
+        secret_word: str = get_random_word(secret_words)
+        lost: bool = False
+        won: bool = False
 
-    while not (won or lost):
-        display_game_state(game_stages, mistaken_letters)
+        print("Welcome to Snowman Meltdown!")
 
-        guess = prompt_letter(guessed_letters)
-        guessed_letters.add(guess)
+        while not (won or lost):
+            display_game_state(game_stages, mistaken_letters)
 
-        mistaken_letters = guessed_letters - set(secret_word)
-        won = set(secret_word) <= guessed_letters
-        lost = len(mistaken_letters) >= len(game_stages) - 1
+            guess = prompt_letter(guessed_letters)
+            guessed_letters.add(guess)
 
-    print("Congratulations! You saved the snowman." if won else f"The snowman died. The word was {secret_word!r}.")
+            mistaken_letters = guessed_letters - set(secret_word)
+            won = set(secret_word) <= guessed_letters
+            lost = len(mistaken_letters) >= len(game_stages) - 1
+
+        print("Congratulations! You saved the snowman." if won else f"The snowman died. The word was {secret_word!r}.")
+        retry = prompt_play_again()
